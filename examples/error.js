@@ -1,7 +1,5 @@
 'use strict'
 
-const Logger = require('../lib/logger')
+const { createLogger } = require('../')
 
-const logger = new Logger({ verbose: 'debug' })
-
-logger.space('error', new Error('Sorry, an error occured...'))
+createLogger().space('error', new Error('Sorry, an error occured...'))
