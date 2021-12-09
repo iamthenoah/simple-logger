@@ -4,7 +4,8 @@ const Logger = require('../lib/logger')
 
 const logger = new Logger({ verbose: 'debug' })
 
-logger.data(
+logger.space(
+	'data',
 	{
 		squadName: 'Super hero squad',
 		homeTown: 'Metro City',
