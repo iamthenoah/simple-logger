@@ -11,7 +11,7 @@
 		"url": "git+https://github.com/noahgreff/core-utility-logger.git"
 	},
 	"keywords": [
-		"logger",
+        "logger",
 		"utility"
 	],
 	"author": "Noah G.",
