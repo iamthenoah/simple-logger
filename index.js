@@ -2,23 +2,24 @@
 
 const { invalidOptionMessage } = require('./lib/util')
 const logger = require('./lib/logger')
-const style = require('./lib/styles')
 
-const defaultOptions = {
-	handleUncaughtException: false,
-	handleUnhandledRejection: false,
-	verbose: 'debug',
-	width: 80
-}
+/**
+ * Expose log styling options.
+ */
+module.exports.Style = require('./lib/styles')
 
-const createLogger = (config = {}) => {
-	const {
-		verbose = defaultOptions.verbose,
-		width = defaultOptions.width,
-		handleUncaughtException = defaultOptions.handleUncaughtException,
-		handleUnhandledRejection = defaultOptions.handleUnhandledRejection
-	} = config
+/**
+ * Expose `Log` object.
+ */
+module.exports.Log = logger.Log
 
+/**
+ * Creates an instance of a Logger with given options.
+ * @param {LoggerOptions?} config Logger config options.
+ * @returns {Logger}
+ */
+module.exports.createLogger = (config = {}) => {
+	const { verbose = 'debug', width = 80, handleUncaughtException = false, handleUnhandledRejection = false } = config
 	const instance = new logger.Logger(verbose, width, handleUncaughtException, handleUnhandledRejection)
 
 	if (verbose && !['debug', 'warnings', 'errors'].includes(verbose)) {
@@ -31,5 +32,3 @@ const createLogger = (config = {}) => {
 
 	return instance
 }
-
-module.exports = { ...style, createLogger }
