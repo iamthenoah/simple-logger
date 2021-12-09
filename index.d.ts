@@ -1,8 +1,3 @@
-export class LogStyle {
-	fg(line: string): string
-	bg(line: string): string
-}
-
 export class Logger {
 	debug(...info: any): void
 	warn(...info: any): void
@@ -32,15 +27,24 @@ export type LoggerOptions = {
 }
 
 export function createLogger(options?: LoggerOptions): Logger
-export function bold(line: string): string
 
-export const Debug: LogStyle
-export const Data: LogStyle
+namespace Style {
+	export class LogStyle {
+		constructor(fg: string, bg: string)
+		fg(line: string): string
+		bg(line: string): string
+	}
 
-export const Red: LogStyle
-export const Green: LogStyle
-export const Yellow: LogStyle
-export const Blue: LogStyle
-export const Magenta: LogStyle
-export const Cyan: LogStyle
-export const White: LogStyle
+	export function bold(line: string): string
+
+	export const Debug: LogStyle
+	export const Data: LogStyle
+
+	export const Red: LogStyle
+	export const Green: LogStyle
+	export const Yellow: LogStyle
+	export const Blue: LogStyle
+	export const Magenta: LogStyle
+	export const Cyan: LogStyle
+	export const White: LogStyle
+}
