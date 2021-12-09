@@ -8,8 +8,8 @@ export class Logger {
 	data(...info: any): void
 	label(label: string, style: LogStyle, ...info: any): void
 	label(label: string, ...info: any): void
-	space(...info: any): void
-	block(...info: any): void
+	space(name: string, ...info: any): void
+	block(name: string, ...info: any): void
 	chuckle(): void
 }
 
