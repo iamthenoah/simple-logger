@@ -15,6 +15,6 @@ const { createLogger } = require('../')
  *
  * SOURCE - https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
  */
-const customStyle = new Styles.LogStyle('\x1b[34m', '\x1b[45m')
+const customStyle = new Styles.LogStyle('\x1b[93;47m', '\x1b[93;41m')
 
 createLogger().label('Custom Tag', customStyle, 'You can Also make your own custom logs.')
