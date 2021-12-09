@@ -1,3 +1,7 @@
+type LogType = 'debug' | 'warn' | 'error' | 'info' | 'important' | 'success' | 'data' | 'label' | 'chuckle'
+
+export type Verbose = 'debug' | 'warnings' | 'errors'
+
 export class Logger {
 	debug(...info: any): void
 	warn(...info: any): void
@@ -8,8 +12,8 @@ export class Logger {
 	data(...info: any): void
 	label(label: string, style: LogStyle, ...info: any): void
 	label(label: string, ...info: any): void
-	space(name: string, ...info: any): void
-	block(name: string, ...info: any): void
+	space(name: LogType, ...info: any): void
+	block(name: LogType, ...info: any): void
 	chuckle(): void
 }
 
@@ -20,7 +24,7 @@ export type Log = {
 }
 
 export type LoggerOptions = {
-	verbose?: 'debug' | 'warnings' | 'errors'
+	verbose?: Verbose
 	width?: number
 	handleUncaughtException?: boolean
 	handleUnhandledRejection?: boolean
