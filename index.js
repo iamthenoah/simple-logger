@@ -1,7 +1,8 @@
 'use strict'
 
 const { invalidOptionMessage } = require('./lib/util')
-const Logger = require('./lib/logger')
+const logger = require('./lib/logger')
+const style = require('./lib/styles')
 
 const defaultOptions = {
 	handleUncaughtException: false,
@@ -10,7 +11,7 @@ const defaultOptions = {
 	width: 80
 }
 
-module.exports.createLogger = (config = {}) => {
+const createLogger = (config = {}) => {
 	const {
 		verbose = defaultOptions.verbose,
 		width = defaultOptions.width,
@@ -18,7 +19,7 @@ module.exports.createLogger = (config = {}) => {
 		handleUnhandledRejection = defaultOptions.handleUnhandledRejection
 	} = config
 
-	const logger = new Logger(verbose, width, handleUncaughtException, handleUnhandledRejection)
+	const instance = new logger.Logger(verbose, width, handleUncaughtException, handleUnhandledRejection)
 
 	if (verbose && !['debug', 'warnings', 'errors'].includes(verbose)) {
 		logger.warn(invalidOptionMessage('verbose', verbose, defaultOptions.verbose))
@@ -28,5 +29,7 @@ module.exports.createLogger = (config = {}) => {
 		logger.warn(invalidOptionMessage(width, defaultOptions.width))
 	}
 
-	return logger
+	return instance
 }
+
+module.exports = { ...style, createLogger }
