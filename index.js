@@ -11,7 +11,12 @@ const defaultOptions = {
 }
 
 module.exports.createLogger = (config = {}) => {
-	const { verbose, width, handleUncaughtException, handleUnhandledRejection } = config
+	const {
+		verbose = defaultOptions.verbose,
+		width = defaultOptions.width,
+		handleUncaughtException = defaultOptions.handleUncaughtException,
+		handleUnhandledRejection = defaultOptions.handleUnhandledRejection
+	} = config
 
 	const logger = new Logger(verbose, width, handleUncaughtException, handleUnhandledRejection)
 
