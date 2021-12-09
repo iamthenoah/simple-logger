@@ -20,7 +20,7 @@ export type Log = {
 }
 
 export type LoggerOptions = {
-	verbose?: 'debug' | 'warnigs' | 'errors'
+	verbose?: 'debug' | 'warnings' | 'errors'
 	width?: number
 	handleUncaughtException?: boolean
 	handleUnhandledRejection?: boolean
