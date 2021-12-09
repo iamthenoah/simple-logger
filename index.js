@@ -6,25 +6,25 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 
 const CONSOLE_WIDTH = 70
 
-export const white = (info) => '\x1b[37m' + info + '\x1b[0m'
-export const red = (info) => '\x1b[31m' + info + '\x1b[0m'
-export const green = (info) => '\x1b[32m' + info + '\x1b[0m'
-export const yellow = (info) => '\x1b[33m' + info + '\x1b[0m'
-export const blue = (info) => '\x1b[34m' + info + '\x1b[0m'
-export const magenta = (info) => '\x1b[35m' + info + '\x1b[0m'
-export const cyan = (info) => '\x1b[36m' + info + '\x1b[0m'
+export const white = info => '\x1b[37m' + info + '\x1b[0m'
+export const red = info => '\x1b[31m' + info + '\x1b[0m'
+export const green = info => '\x1b[32m' + info + '\x1b[0m'
+export const yellow = info => '\x1b[33m' + info + '\x1b[0m'
+export const blue = info => '\x1b[34m' + info + '\x1b[0m'
+export const magenta = info => '\x1b[35m' + info + '\x1b[0m'
+export const cyan = info => '\x1b[36m' + info + '\x1b[0m'
 
-export const dimLabel = (info) => '\x1b[40m' + white(info) + '\x1b[0m'
-export const redLabel = (info) => '\x1b[41m' + white(info) + '\x1b[0m'
-export const greenLabel = (info) => '\x1b[42m' + white(info) + '\x1b[0m'
-export const yellowLabel = (info) => '\x1b[43m' + white(info) + '\x1b[0m'
-export const blueLabel = (info) => '\x1b[44m' + white(info) + '\x1b[0m'
-export const magentaLabel = (info) => '\x1b[45m' + white(info) + '\x1b[0m'
-export const cyanLabel = (info) => '\x1b[46m' + white(info) + '\x1b[0m'
+export const dimLabel = info => '\x1b[40m' + white(info) + '\x1b[0m'
+export const redLabel = info => '\x1b[41m' + white(info) + '\x1b[0m'
+export const greenLabel = info => '\x1b[42m' + white(info) + '\x1b[0m'
+export const yellowLabel = info => '\x1b[43m' + white(info) + '\x1b[0m'
+export const blueLabel = info => '\x1b[44m' + white(info) + '\x1b[0m'
+export const magentaLabel = info => '\x1b[45m' + white(info) + '\x1b[0m'
+export const cyanLabel = info => '\x1b[46m' + white(info) + '\x1b[0m'
 
-export const bold = (info) => '\x1b[1m' + info + '\x1b[0m'
-export const dim = (info) => '\x1b[2m' + info + '\x1b[0m'
-export const center = (info) => ' '.repeat((CONSOLE_WIDTH - info.length) / 2 - 1) + info
+export const bold = info => '\x1b[1m' + info + '\x1b[0m'
+export const dim = info => '\x1b[2m' + info + '\x1b[0m'
+export const center = info => ' '.repeat((CONSOLE_WIDTH - info.length) / 2 - 1) + info
 
 export default class Logger {
 	static log(info = null) {
@@ -68,7 +68,7 @@ export default class Logger {
 	static data(obj) {
 		if (process.env.VERBOSE === 'debug') {
 			const arr = flatten(obj)
-			Object.keys(arr).forEach((k) => {
+			Object.keys(arr).forEach(k => {
 				const s = k + ' : ' + arr[k]
 				Logger.label('DATA', blueLabel, yellow(s))
 			})

@@ -1,23 +1,23 @@
 {
-  "name": "@core-utility/logger",
-  "version": "1.0.0",
-  "description": "Utility package for logging information on console.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/noahgreff/core-utility-logger.git"
-  },
-  "keywords": [
-    "logger",
-    "utility"
-  ],
-  "author": "Noah G.",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/noahgreff/core-utility-logger/issues"
-  },
-  "homepage": "https://github.com/noahgreff/core-utility-logger#readme"
+	"name": "@core-utility/logger",
+	"version": "1.0.0",
+	"description": "Utility package for logging information on console.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/noahgreff/core-utility-logger.git"
+	},
+	"keywords": [
+		"logger",
+		"utility"
+	],
+	"author": "Noah G.",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/noahgreff/core-utility-logger/issues"
+	},
+	"homepage": "https://github.com/noahgreff/core-utility-logger#readme"
 }
