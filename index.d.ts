@@ -79,6 +79,7 @@ export namespace Logger {
 	 * Logger object. All available log types.
 	 */
 	export interface Logger {
+		log(...info: any): void
 		debug(...info: any): void
 		warn(...info: any): void
 		error(...info: any): void
@@ -103,15 +104,15 @@ export namespace Style {
 	 */
 	export class LogStyle {
 		constructor(fg: string, bg: string)
-		fg(...info: string[]): string
-		bg(...info: string[]): string
+		fg(...info: any): string
+		bg(...info: any): string
 	}
 
 	/**
 	 * Wraps input with the highlight escape sequence.
 	 * @param {string} line input.
 	 */
-	export function bold(...line: string[]): string
+	export function bold(...line: any): string
 
 	/**
 	 * Special style for `debug` logs.
