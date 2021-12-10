@@ -9,9 +9,9 @@ const logger = require('./lib/logger')
 module.exports.Style = require('./lib/styles')
 
 /**
- * Expose `Log` object.
+ * Expose logger object.
  */
-module.exports.Log = logger.Log
+module.exports.Logger = logger
 
 /**
  * Creates an instance of a Logger with given options.
@@ -19,13 +19,19 @@ module.exports.Log = logger.Log
  * @returns {Logger}
  */
 module.exports.createLogger = (config = {}) => {
-	const { verbose = 'debug', width = 80, handleUncaughtException = false, handleUnhandledRejection = false } = config
-	const instance = new logger.Logger(verbose, width, handleUncaughtException, handleUnhandledRejection)
+	const {
+		verbose = 'debug',
+		width = 80,
+		handleUncaughtException = false,
+		handleUnhandledRejection = false,
+		handleWarning = false
+	} = config
+
+	const instance = new logger.Logger(verbose, width, handleUncaughtException, handleUnhandledRejection, handleWarning)
 
 	if (verbose && !['debug', 'warnings', 'errors'].includes(verbose)) {
 		instance.warn(invalidOptionMessage('verbose', verbose, verbose))
 	}
-
 	if (width > process.stdout.columns || width < 40) {
 		instance.warn(invalidOptionMessage(width, width))
 	}
