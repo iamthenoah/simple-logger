@@ -18,6 +18,7 @@ module.exports.Style = style
  * Default logger config options.
  */
 const defaultOptions = {
+	isDevelopment: process.env.NODE_ENV === 'development',
 	verbose: 'debug',
 	width: 80,
 	handleUncaughtException: false,
@@ -32,6 +33,7 @@ const defaultOptions = {
  */
 module.exports.createLogger = (config = {}) => {
 	const {
+		isDevelopment = defaultOptions.isDevelopment,
 		verbose = defaultOptions.verbose,
 		width = defaultOptions.width,
 		handleUncaughtException = defaultOptions.handleUncaughtException,
@@ -39,7 +41,14 @@ module.exports.createLogger = (config = {}) => {
 		handleWarning = defaultOptions.handleWarning
 	} = config
 
-	const instance = new logger.Logger(verbose, width, handleUncaughtException, handleUnhandledRejection, handleWarning)
+	const instance = new logger.Logger(
+		isDevelopment,
+		verbose,
+		width,
+		handleUncaughtException,
+		handleUnhandledRejection,
+		handleWarning
+	)
 
 	if (!['debug', 'warning', 'error'].includes(verbose)) {
 		instance.warn(invalidOptionMessage('verbose', verbose, defaultOptions.verbose))

@@ -3,6 +3,7 @@ type LogType = 'debug' | 'warn' | 'error' | 'info' | 'important' | 'success' | '
 export type Verbose = 'debug' | 'warning' | 'error'
 
 export type LoggerOptions = {
+    isDevelopment?: boolean
 	verbose?: Verbose
 	width?: number
 	handleUncaughtException?: boolean
