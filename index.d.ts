@@ -32,8 +32,8 @@ export namespace Logger {
 		space(name: LogType, ...info: any): void
 		block(name: LogType, ...info: any): void
 		chuckle(): void
-		crash(reason: any, fatal: boolean): void
-		start(...preview): void
+		crash(reason: any): void
+		start(...preview: any): void
 	}
 }
 
