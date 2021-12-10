@@ -10,13 +10,13 @@ export type LoggerOptions = {
 	handleWarning?: boolean
 }
 
-export function createLogger(options?: LoggerOptions): Logger
+export function createLogger(options?: LoggerOptions): Logger.Logger
 
-namespace Logger {
+export namespace Logger {
 	export type Log = {
 		info: any
 		label: string
-		style: LogStyle
+		style: Style.LogStyle
 	}
 
 	export class Logger {
@@ -27,7 +27,7 @@ namespace Logger {
 		imporant(...info: any): void
 		success(...info: any): void
 		data(...info: any): void
-		label(label: string, style: LogStyle, ...info: any): void
+		label(label: string, style: Style.LogStyle, ...info: any): void
 		label(label: string, ...info: any): void
 		space(name: LogType, ...info: any): void
 		block(name: LogType, ...info: any): void
@@ -37,7 +37,7 @@ namespace Logger {
 	}
 }
 
-namespace Style {
+export namespace Style {
 	export class LogStyle {
 		constructor(fg: string, bg: string)
 		fg(line: string): string

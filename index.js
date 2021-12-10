@@ -29,11 +29,11 @@ module.exports.createLogger = (config = {}) => {
 
 	const instance = new logger.Logger(verbose, width, handleUncaughtException, handleUnhandledRejection, handleWarning)
 
-	if (verbose && !['debug', 'warnings', 'errors'].includes(verbose)) {
-		instance.warn(invalidOptionMessage('verbose', verbose, verbose))
+	if (!['debug', 'warnings', 'errors'].includes(verbose)) {
+		instance.warn(invalidOptionMessage('verbose', verbose, 'debug'))
 	}
 	if (width > process.stdout.columns || width < 40) {
-		instance.warn(invalidOptionMessage(width, width))
+		instance.warn(invalidOptionMessage('wdith', width, 80))
 	}
 
 	return instance
