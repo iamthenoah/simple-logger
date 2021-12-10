@@ -103,15 +103,15 @@ export namespace Style {
 	 */
 	export class LogStyle {
 		constructor(fg: string, bg: string)
-		fg(line: string): string
-		bg(line: string): string
+		fg(...info: string[]): string
+		bg(...info: string[]): string
 	}
 
 	/**
 	 * Wraps input with the highlight escape sequence.
 	 * @param {string} line input.
 	 */
-	export function bold(line: string): string
+	export function bold(...line: string[]): string
 
 	/**
 	 * Special style for `debug` logs.
