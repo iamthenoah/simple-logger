@@ -1,6 +1,6 @@
 type LogType = 'debug' | 'warn' | 'error' | 'info' | 'important' | 'success' | 'data' | 'label' | 'chuckle'
 
-export type Verbose = 'debug' | 'warnings' | 'errors'
+export type Verbose = 'debug' | 'warning' | 'error'
 
 export type LoggerOptions = {
 	verbose?: Verbose
@@ -19,7 +19,7 @@ export namespace Logger {
 		style: Style.LogStyle
 	}
 
-	export class Logger {
+	export interface Logger {
 		debug(...info: any): void
 		warn(...info: any): void
 		error(...info: any): void
@@ -34,6 +34,7 @@ export namespace Logger {
 		chuckle(): void
 		crash(reason: any): void
 		start(...preview: any): void
+		clear(): void
 	}
 }
 

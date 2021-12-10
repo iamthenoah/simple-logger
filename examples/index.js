@@ -1,7 +1,7 @@
 /**
  * Loads all examples.
- * NPM Command : 'node lib/examples'
+ * NPM Command : `node examples/`
  */
-;['debug', 'data', 'error', 'warn', 'important', 'info', 'success', 'block', 'chuckle', 'custom', 'crash'].forEach(e => {
+;['debug', 'data', 'error', 'warn', 'important', 'info', 'success', 'block', 'chuckle', 'custom', 'crash'].forEach(e =>
 	require('./' + e)
-})
+)
