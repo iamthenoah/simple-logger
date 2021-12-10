@@ -5,14 +5,19 @@ const logger = require('./lib/logger')
 const style = require('./lib/styles')
 
 /**
- * Expose logger object.
+ * Expose core logger objects.
  */
-module.exports.Logger = logger
+module.exports.Console = logger
 
 /**
  * Expose log styling options.
  */
 module.exports.Style = style
+
+/**
+ * Expose default `Logger` object.
+ */
+module.exports.Logger = this.createLogger()
 
 /**
  * Default logger config options.

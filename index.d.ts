@@ -59,13 +59,18 @@ export type LoggerOptions = {
 }
 
 /**
+ * Default `Logger` object.
+ */
+export const Logger: Console.Logger
+
+/**
  * Creates an instance of a Logger with given options.
  * @param {LoggerOptions?} config Logger config options.
  * @returns {Logger}
  */
-export function createLogger(options?: LoggerOptions): Logger.Logger
+export function createLogger(options?: LoggerOptions): Console.Logger
 
-export namespace Logger {
+export namespace Console {
 	/**
 	 * Log type object for the logger to process via `processLog`.
 	 */
