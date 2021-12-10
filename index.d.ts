@@ -83,22 +83,22 @@ export namespace Console {
 	/**
 	 * Logger object. All available log types.
 	 */
-	export interface Logger {
-		log(...info: any): void
-		debug(...info: any): void
-		warn(...info: any): void
-		error(...info: any): void
-		info(...info: any): void
-		imporant(...info: any): void
-		success(...info: any): void
-		data(...info: any): void
-		label(label: string, style: Style.LogStyle, ...info: any): void
-		label(label: string, ...info: any): void
-		space(name: LogType, ...info: any): void
-		block(name: LogType, ...info: any): void
+	export interface Logger extends Console {
+		log(...info: any[]): void
+		debug(...info: any[]): void
+		warn(...info: any[]): void
+		error(...info: any[]): void
+		info(...info: any[]): void
+		imporant(...info: any[]): void
+		success(...info: any[]): void
+		data(...info: any[]): void
+		label(label: string, style: Style.LogStyle, ...info: any[]): void
+		label(label: string, ...info: any[]): void
+		space(name: LogType, ...info: any[]): void
+		block(name: LogType, ...info: any[]): void
 		chuckle(): void
-		crash(reason: any): void
-		start(...preview: any): void
+		crash(reason: any[]): void
+		start(...preview: any[]): void
 		clear(): void
 	}
 }
