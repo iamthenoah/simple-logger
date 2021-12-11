@@ -1,6 +1,5 @@
 'use strict'
 
-const { invalidOptionMessage } = require('./lib/util')
 const logger = require('./lib/logger')
 const style = require('./lib/styles')
 
@@ -15,51 +14,40 @@ module.exports.Console = logger
 module.exports.Style = style
 
 /**
- * Expose default `Logger` object.
- */
-module.exports.Logger = this.createLogger()
-
-/**
  * Default logger config options.
  */
 const defaultOptions = {
+	verbose: process.env.VERBOSE ?? true,
 	isDevelopment: process.env.NODE_ENV === 'development',
-	verbose: 'debug',
-	width: 80,
-	handleUncaughtException: false,
-	handleUnhandledRejection: false,
-	handleWarning: false
+	ignoreWarnings: process.env.NODE_ENV === 'production',
+	excludeWhenNoVerbose: ['debug', 'data', 'log'],
+	stdout: process.stdout,
+	stderr: process.stderr
 }
 
 /**
+ * Create default instance of a logger.
+ */
+module.exports.Logger = new logger.Logger(defaultOptions)
+
+/**
  * Creates an instance of a Logger with given options.
- * @param {LoggerOptions?} config Logger config options.
+ * @param {LoggerConstructorOptions?} config Logger config options.
  * @returns {Logger}
  */
 module.exports.createLogger = (config = {}) => {
-	const {
-		isDevelopment = defaultOptions.isDevelopment,
-		verbose = defaultOptions.verbose,
-		width = defaultOptions.width,
-		handleUncaughtException = defaultOptions.handleUncaughtException,
-		handleUnhandledRejection = defaultOptions.handleUnhandledRejection,
-		handleWarning = defaultOptions.handleWarning
-	} = config
+	// set default params
+	Object.keys(defaultOptions).forEach(k => {
+		config[k] === undefined ? (config[k] = defaultOptions[k]) : null
+	})
 
-	const instance = new logger.Logger(
-		isDevelopment,
-		verbose,
-		width,
-		handleUncaughtException,
-		handleUnhandledRejection,
-		handleWarning
-	)
+	const instance = new logger.Logger()
 
-	if (!['debug', 'warning', 'error'].includes(verbose)) {
-		instance.warn(invalidOptionMessage('verbose', verbose, defaultOptions.verbose))
-	}
-	if (width > process.stdout.columns || width < 40) {
-		instance.warn(invalidOptionMessage('width', width, defaultOptions.width))
+	if (verbose && !isDevelopment) {
+		instance.warn(
+			`Logger verbose set to '${verbose}' while mode is set to development.`,
+			`No restrictions set on log types ${excludeWhenNoVerbose}.`
+		)
 	}
 
 	return instance
