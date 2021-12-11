@@ -1,17 +1,17 @@
 'use strict'
 
-const logger = require('./lib/logger')
-const style = require('./lib/styles')
+const Logger = require('./lib/logger')
+const Log = require('./lib/log')
 
 /**
  * Expose core logger objects.
  */
-module.exports.Console = logger
+module.exports.Console = Logger
 
 /**
  * Expose log styling options.
  */
-module.exports.Style = style
+module.exports.Log = Log
 
 /**
  * Default logger config options.
@@ -19,35 +19,56 @@ module.exports.Style = style
 const defaultOptions = {
 	verbose: process.env.VERBOSE ?? true,
 	isDevelopment: process.env.NODE_ENV === 'development',
-	ignoreWarnings: process.env.NODE_ENV === 'production',
+	minTagWidth: -1,
 	excludeWhenNoVerbose: ['debug', 'data', 'log'],
-	stdout: process.stdout,
-	stderr: process.stderr
+	ignoreErrors: false,
+	ignoreWarnings: process.env.NODE_ENV === 'production'
+}
+
+/**
+ * Default logger log types.
+ */
+const defaultLogElements = {
+	log: Log.Log,
+	debug: Log.Debug,
+	info: Log.Info,
+	data: Log.Data,
+	warn: Log.Warn,
+	error: Log.Error,
+	trace: Log.Trace,
+	success: Log.Success,
+	important: Log.Important
 }
 
 /**
  * Create default instance of a logger.
  */
-module.exports.Logger = new logger.Logger(defaultOptions)
+module.exports.Logger = new Logger(defaultOptions, defaultLogElements)
 
 /**
  * Creates an instance of a Logger with given options.
  * @param {LoggerConstructorOptions?} config Logger config options.
  * @returns {Logger}
  */
-module.exports.createLogger = (config = {}) => {
+module.exports.createLogger = (config = {}, extraLogElements = {}) => {
 	// set default params
 	Object.keys(defaultOptions).forEach(k => {
-		config[k] === undefined ? (config[k] = defaultOptions[k]) : null
+		if (config[k] === undefined) config[k] = defaultOptions[k]
 	})
 
-	const instance = new logger.Logger()
+	const logElementConfigs = {
+		...defaultLogElements,
+		...extraLogElements
+	}
 
-	if (verbose && !isDevelopment) {
-		instance.warn(
-			`Logger verbose set to '${verbose}' while mode is set to development.`,
-			`No restrictions set on log types ${excludeWhenNoVerbose}.`
-		)
+	const instance = new Logger(config, logElementConfigs)
+
+	const { verbose, isDevelopment, excludeWhenNoVerbose } = config
+	if (verbose && !isDevelopment && excludeWhenNoVerbose.length) {
+		// instance.warn(
+		// 	`Logger verbose set to '${verbose}' while mode is set to development.`,
+		// 	`No restrictions set on log types: ${excludeWhenNoVerbose}.`
+		// )
 	}
 
 	return instance

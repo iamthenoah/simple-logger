@@ -255,5 +255,5 @@ export const Logger: Console.Logger
  */
 export function createLogger(
 	options?: LoggerConstructorOptions,
-	extraLogElements: Record<string, Log.Element>
+	extraLogElements: Record<LogType | string, Log.Element>
 ): Console.Logger
