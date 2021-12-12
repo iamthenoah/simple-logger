@@ -2,4 +2,4 @@
 
 const { createLogger } = require('../')
 
-createLogger().space('error', new Error('Sorry, an error occured...'))
+createLogger().error(new Error('Sorry, an error occured...'))

@@ -1,8 +1,13 @@
-'use strict'
+const { createLogger } = require('./index')
+const Log = require('./lib/log')
 
-const { createLogger } = require('../')
+const l = createLogger({ minTagWidth: 4 }, { mabite: Log.Info })
 
-createLogger().data(
+l.clear()
+l.data(
+	{ edewddew: 'ewdwd' },
+	{ weewfew: 'wefwefew' },
+	'wffwefef',
 	{
 		squadName: 'Super hero squad',
 		homeTown: 'Metro City',

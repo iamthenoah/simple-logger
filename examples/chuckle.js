@@ -2,4 +2,4 @@
 
 const { createLogger } = require('../')
 
-createLogger().space('chuckle')
+createLogger().chuckle()

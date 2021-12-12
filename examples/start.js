@@ -1,13 +1,13 @@
 'use strict'
 
-const { createLogger, Style } = require('..')
+const { createLogger } = require('..')
+const Log = require('../lib/log')
 
 /**
  * Add a custom startup title with styling.
  * https://patorjk.com/software/taag/#p=testall&f=Rectangles&t=Example...
  */
-
-const title = Style.Blue.fg(
+const title = Log.Blue.colorLog(
 	` _____                   _           `,
 	`|   __|_ _ ___ _____ ___| |___       `,
 	`|   __|_'_| .'|     | . | | -_|_ _ _ `,
@@ -15,8 +15,8 @@ const title = Style.Blue.fg(
 	`                    |_|              `
 )
 
-const author = Style.Red.fg(`Author: ${Style.bold('your_name')}`)
+const author = Log.Red.colorLog(`Author: ${Log.Style.bold('your_name')}`)
 
-const description = Style.Yellow.fg('These are logging examples of this library...')
+const description = Log.Yellow.colorLog('These are logging examples of this library...')
 
-createLogger().start(...title, '', author, '', description)
+createLogger().start(...title, author, '', description)

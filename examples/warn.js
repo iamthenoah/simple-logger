@@ -2,4 +2,4 @@
 
 const { createLogger } = require('../')
 
-createLogger().space('warn', 'Something might be wrong. Idk...')
+createLogger().warn('Something might be wrong. Idk...')

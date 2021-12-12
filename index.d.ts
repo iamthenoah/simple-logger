@@ -2,7 +2,7 @@ export namespace Console {
 	/**
 	 * Available log types.
 	 */
-	type LogType = 'log' | 'debug' | 'info' | 'data' | 'warn' | 'error' | 'trace' | 'success' | 'important'
+	type LogType = 'log' | 'debug' | 'info' | 'data' | 'warn' | 'error' | 'trace' | 'group'
 
 	/**
 	 * Logging verbose types.
@@ -82,21 +82,19 @@ export namespace Console {
 	/**
 	 * Logger object. All available log types.
 	 */
-	export interface Logger extends Console {
+	export interface Logger {
 		Logger: Console.LoggerConstructorOptions
 		log(...info: any[]): void
 		debug(...info: any[]): void
+		info(...info: any[]): void
+		data(...info: any[]): void
 		warn(...info: any[]): void
 		error(...info: any[]): void
-		info(...info: any[]): void
-		imporant(...info: any[]): void
-		success(...info: any[]): void
-		data(...info: any[]): void
-		group(name: LogType, ...info: any[]): void
-		space(name: LogType, ...info: any[]): void
-		chuckle(): void
+		trace(...info: any[]): void
+		group(name: LogType | string, ...info: any[]): void
 		start(...info: any[]): void
 		crash(reason: any): void
+		chuckle(): void
 		clear(): void
 	}
 }
@@ -225,20 +223,6 @@ export namespace Log {
 	 * @type {Log.Element}
 	 */
 	export const Trace: Log.Element
-
-	/**
-	 * `Success` log element for 'success' logging.
-	 *
-	 * @type {Log.Element}
-	 */
-	export const Success: Log.Element
-
-	/**
-	 * `Important` log element for 'important' logging.
-	 *
-	 * @type {Log.Element}
-	 */
-	export const Important: Log.Element
 }
 
 /**
@@ -249,11 +233,11 @@ export const Logger: Console.Logger
 /**
  * Creates an instance of a Logger with given options.
  *
- * @param {LoggerConstructorOptions?} config Logger config options.
+ * @param {Console.LoggerConstructorOptions?} config Logger config options.
  * @param {Record<string, Log.Element>} extraLogElements Additional log elements to add to logger.
- * @returns {Logger}
+ * @returns {Console.Logger}
  */
 export function createLogger(
-	options?: LoggerConstructorOptions,
-	extraLogElements: Record<LogType | string, Log.Element>
+	options?: Console.LoggerConstructorOptions,
+	extraLogElements?: Record<Console.LogType | string, Log.Element>
 ): Console.Logger

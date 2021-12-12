@@ -1,7 +1,7 @@
 'use strict'
 
-const Styles = require('../lib/styles')
-const { createLogger } = require('../')
+const { createLogger } = require('..')
+const Log = require('../lib/log')
 
 /**
  * Accepts and escape sequence to pass to console.
@@ -15,6 +15,17 @@ const { createLogger } = require('../')
  *
  * SOURCE - https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
  */
-const customStyle = new Styles.LogStyle('\x1b[93;47m', '\x1b[45m')
+const customStyle = Log.Style.create('\x1b[93;44m', '\x1b[45m')
 
-createLogger().label('Custom Tag', customStyle, 'You can Also make your own custom logs.')
+/**
+ * Creating custom logging element.
+ */
+const customElement = new Log.Element('Custom Tag', customStyle, '> Log start', '|', '< Log end')
+
+/**
+ * Custom log types can also be registered when creating an instance of a logger.
+ * Here, we register `api` as an example using the above element object.
+ */
+const logger = createLogger({ /* logger options goes here */ }, { api: customElement })
+
+logger.api('You can Also make your own custom logs.')

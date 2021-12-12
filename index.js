@@ -20,30 +20,15 @@ const defaultOptions = {
 	verbose: process.env.VERBOSE ?? true,
 	isDevelopment: process.env.NODE_ENV === 'development',
 	minTagWidth: -1,
-	excludeWhenNoVerbose: ['debug', 'data', 'log'],
+	excludeWhenNoVerbose: ['log', 'debug', 'data'],
 	ignoreErrors: false,
 	ignoreWarnings: process.env.NODE_ENV === 'production'
 }
 
 /**
- * Default logger log types.
- */
-const defaultLogElements = {
-	log: Log.Log,
-	debug: Log.Debug,
-	info: Log.Info,
-	data: Log.Data,
-	warn: Log.Warn,
-	error: Log.Error,
-	trace: Log.Trace,
-	success: Log.Success,
-	important: Log.Important
-}
-
-/**
  * Create default instance of a logger.
  */
-module.exports.Logger = new Logger(defaultOptions, defaultLogElements)
+module.exports.Logger = new Logger(defaultOptions, {})
 
 /**
  * Creates an instance of a Logger with given options.
@@ -56,19 +41,14 @@ module.exports.createLogger = (config = {}, extraLogElements = {}) => {
 		if (config[k] === undefined) config[k] = defaultOptions[k]
 	})
 
-	const logElementConfigs = {
-		...defaultLogElements,
-		...extraLogElements
-	}
-
-	const instance = new Logger(config, logElementConfigs)
+	const instance = new Logger(config, extraLogElements)
 
 	const { verbose, isDevelopment, excludeWhenNoVerbose } = config
 	if (verbose && !isDevelopment && excludeWhenNoVerbose.length) {
-		// instance.warn(
-		// 	`Logger verbose set to '${verbose}' while mode is set to development.`,
-		// 	`No restrictions set on log types: ${excludeWhenNoVerbose}.`
-		// )
+		instance.warn(
+			`Logger verbose set to '${verbose}' while mode is set to development.`,
+			`No restrictions set on log types: ${excludeWhenNoVerbose}.`
+		)
 	}
 
 	return instance

@@ -3,16 +3,15 @@
  * NPM Command : `node examples/`
  */
 ;[
-	'start',
-	'debug',
-	'data',
-	'error',
-	'warn',
-	'important',
-	'info',
-	'success',
-	'block',
-	'chuckle',
-	'custom',
-	'crash'
-].forEach(e => require('./' + e))
+	'./start',
+	'./log',
+	'./debug',
+	'./info',
+	'./data',
+	'./warn',
+	'./error',
+	'./group',
+	'./chuckle',
+	'./custom',
+	'./crash'
+].forEach(require)
