@@ -33,6 +33,7 @@ module.exports.Logger = new Logger(defaultOptions, {})
 /**
  * Creates an instance of a Logger with given options.
  * @param {LoggerConstructorOptions?} config Logger config options.
+ * @param {Log.Element[]?} extraLogElements custom additonal `Log.Element`.
  * @returns {Logger}
  */
 module.exports.createLogger = (config = {}, extraLogElements = {}) => {

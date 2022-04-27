@@ -53,10 +53,10 @@ export namespace Console {
 		 * `LogType`s to exclude while `verbose` is set to `false`.
 		 * Also works with custom log types.
 		 *
-		 * @type {Verbose[]}
+		 * @type {LogType[]}
 		 * @default ['debug', 'data', 'log']
 		 */
-		excludeWhenNoVerbose?: Verbose[] | string[]
+		excludeWhenNoVerbose?: LogType[] | string[]
 
 		/**
 		 * `ignoreErrors`
