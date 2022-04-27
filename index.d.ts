@@ -104,19 +104,19 @@ export namespace Log {
 	 * Log element for logger to process.
 	 */
 	export class Element {
-		constructor(tag: any, style: any, prefix: any, prepend: any, append: any)
-		static create(tag: any, style: any): Element
+		constructor(tag: string, style: Log.Style, prefix: string, prepend: string, append: string)
+		static create(tag: string, style: Log.Style): Element
 	}
 
 	/**
 	 * Styling object for the logger to process via `processLog`.
 	 */
 	export class Style {
-		constructor(logText: any, logBackground: any, tagText: any, tagBackground: any)
+		constructor(logText: string, logBackground: string, tagText: string, tagBackground: string)
 		colorLog(...info: any[]): string[]
 		colorTag(...info: any[]): string[]
 		static bold(...info: any[]): string[]
-		static create(logText: any, tagBackground: any): Style
+		static create(logText: string, tagBackground: string): Style
 	}
 
 	/**
